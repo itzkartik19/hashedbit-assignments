@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HashedBit DOM Assignments</title>
+
+<style>
+
+/* Dark Theme */
+.day {
+    background-color: white;
+    color: black;
+}
+
+.night {
+    background-color: black;
+    color: gold;
+}
+
+.button_day {
+    background-color: white;
+    color: black;
+}
+
+.button_night {
+    background-color: darkblue;
+    color: white;
+}
+
+#app {
+    padding: 20px;
+}
+
+/* Dynamic CSS */
+.text-here {
+    font-size: 55px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h2>Assignment 1: Dark Theme</h2>
+
+<div id="app" class="day">
+    <p>I am a HashedBit student, ready to become an awesome full stack developer</p>
+    <button onclick="swapTheme()" id="swap" class="button_day">Toggle theme</button>
+</div>
+
+<hr>
+
+<h2>Assignment 2: Create Div</h2>
+
+<div id="container"></div>
+
+<button onclick="createDiv(200,100,'New Div Created')">
+Create Div
+</button>
+
+<hr>
+
+<h2>Assignment 3: Hide Show Paragraph</h2>
+
+<p id="useless-paragraph">Useless paragraph.</p>
+
+<button onclick="toggleVisibility()">
+Toggle Button
+</button>
+
+<hr>
+
+<h2>Assignment 4: Dynamic CSS</h2>
+
+<div class="text-here" id="text-container">
+This is some example text
+</div>
+
+<br>
+
+<input type="text" id="colorbox">
+<button onclick="changeColor()" id="colorchange">
+Change Colour
+</button>
+
+<br><br>
+
+<input type="range" id="fontsize" min="10" max="100" value="55"
+oninput="changeFontSize()">
+
+<br><br>
+
+<button onclick="toggleItalic()" id="italic">Italic</button>
+<button onclick="toggleUnderline()" id="underline">Underline</button>
+<button onclick="toggleBold()" id="bold">Bold</button>
+
+<br><br>
+
+<select id="list" onchange="changeFontFamily()">
+<option value="serif">Serif</option>
+<option value="sans-serif">Sans-Serif</option>
+<option value="monospace">Monospace</option>
+<option value="cursive">Cursive</option>
+<option value="fantasy">Fantasy</option>
+</select>
+
+<br><br>
+
+<button onclick="getCSS()" id="getstyle">
+Get CSS
+</button>
+
+<p id="css-props"></p>
+
+<script>
+
+/* Assignment 1 Dark Theme */
+
+function swapTheme() {
+
+    var app = document.getElementById("app");
+    var button = document.getElementById("swap");
+
+    if(app.className === "day") {
+
+        app.className = "night";
+        button.className = "button_night";
+
+    } else {
+
+        app.className = "day";
+        button.className = "button_day";
+    }
+}
+
+/* Assignment 2 Create Div */
+
+function createDiv(width,height,text) {
+
+    var div = document.createElement("div");
+
+    div.style.width = width + "px";
+    div.style.height = height + "px";
+
+    div.innerText = text;
+
+    div.style.border = "1px solid black";
+
+    document.getElementById("container").appendChild(div);
+}
+
+/* Assignment 3 Hide Show */
+
+function toggleVisibility() {
+
+    var para = document.getElementById("useless-paragraph");
+
+    if(para.style.display === "none") {
+
+        para.style.display = "block";
+
+    } else {
+
+        para.style.display = "none";
+    }
+}
+
+/* Assignment 4 Dynamic CSS */
+
+function changeColor() {
+
+    var color = document.getElementById("colorbox").value;
+
+    document.getElementById("text-container").style.color = color;
+}
+
+function changeFontSize() {
+
+    var size = document.getElementById("fontsize").value;
+
+    document.getElementById("text-container").style.fontSize = size + "px";
+}
+
+function toggleItalic() {
+
+    var text = document.getElementById("text-container");
+
+    text.style.fontStyle =
+    text.style.fontStyle === "italic" ? "normal" : "italic";
+}
+
+function toggleUnderline() {
+
+    var text = document.getElementById("text-container");
+
+    text.style.textDecoration =
+    text.style.textDecoration === "underline" ? "none" : "underline";
+}
+
+function toggleBold() {
+
+    var text = document.getElementById("text-container");
+
+    text.style.fontWeight =
+    text.style.fontWeight === "bold" ? "normal" : "bold";
+}
+
+function changeFontFamily() {
+
+    var font = document.getElementById("list").value;
+
+    document.getElementById("text-container").style.fontFamily = font;
+}
+
+function getCSS() {
+
+    var text = document.getElementById("text-container");
+
+    var css =
+    "color: " + text.style.color + "; " +
+    "font-size: " + text.style.fontSize + "; " +
+    "font-family: " + text.style.fontFamily + "; " +
+    "font-style: " + text.style.fontStyle + "; " +
+    "font-weight: " + text.style.fontWeight + "; " +
+    "text-decoration: " + text.style.textDecoration + ";";
+
+    document.getElementById("css-props").innerText = css;
+}
+
+</script>
+
+</body>
+</html>
